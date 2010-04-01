@@ -149,7 +149,7 @@ public abstract class PaymentView extends JPanel {
 				try {
 					for (Ticket ticket : ticketsToSettle) {
 						if(ticket.needsKitchenPrint()) {
-							PosPrintService.printToKitcken(ticket);
+							PosPrintService.printToKitchen(ticket);
 						}
 						ticket.clearDeletedItems();
 					}
