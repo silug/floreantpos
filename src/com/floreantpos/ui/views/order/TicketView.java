@@ -430,8 +430,10 @@ public class TicketView extends JPanel {
 			}
 
 			firePayOrderSelected();
-		} catch (PosException e) {
-			POSMessageDialog.showError(e.getMessage());
+		} catch (PosException x) {
+			POSMessageDialog.showError(x.getMessage());
+		} catch (Exception e) {
+			POSMessageDialog.showError(Application.getPosWindow(), POSMessageDialog.ERROR_MESSAGE, e);
 		}
 	}//GEN-LAST:event_doPayNow
 
