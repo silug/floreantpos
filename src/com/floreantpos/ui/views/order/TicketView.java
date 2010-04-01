@@ -355,9 +355,9 @@ public class TicketView extends JPanel {
 
 			saveOrder();
 
-			if (Application.getPrinterConfiguration().isPrintRecreiptWhenTicketSettled()) {
+			/*if (Application.getPrinterConfiguration().isPrintRecreiptWhenTicketSettled()) {
 				PosPrintService.printTicket(ticket);
-			}
+			}*/
 
 			if (Application.getPrinterConfiguration().isPrintKitchenWhenTicketSettled()) {
 				if (ticket.needsKitchenPrint()) {
@@ -416,6 +416,14 @@ public class TicketView extends JPanel {
 			updateModel();
 
 			saveOrder();
+
+			if (Application.getPrinterConfiguration().isPrintKitchenWhenTicketSettled()) {
+				if (ticket.needsKitchenPrint()) {
+					PosPrintService.printToKitchen(ticket);
+				}
+				ticket.clearDeletedItems();
+				saveOrder();
+			}
 
 			firePayOrderSelected();
 		} catch (PosException e) {
