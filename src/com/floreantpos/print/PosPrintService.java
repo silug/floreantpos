@@ -337,6 +337,24 @@ public class PosPrintService {
 					posPrinter.endLine();
 
 					posPrinter.beginLine(PosPrinter.SIZE_0);
+					posPrinter.printText(StringUtils.leftPad("PAYMENT METHOD :", 32));
+					posPrinter.printText(StringUtils.leftPad(ticket.getTransactionType(), 10));
+					posPrinter.endLine();
+
+					posPrinter.beginLine(PosPrinter.SIZE_0);
+					posPrinter.printText(StringUtils.leftPad("CREDIT     :", 32));
+					posPrinter.printText(StringUtils.leftPad(Application.formatNumber(ticket.getPaidAmount()), 10));
+					posPrinter.endLine();
+
+					posPrinter.beginLine(PosPrinter.SIZE_0);
+					posPrinter.printText(StringUtils.leftPad("CHANGE     :", 32));
+					posPrinter.printText(StringUtils.leftPad(Application.formatNumber(ticket.getPaidAmount() - ticket.getTotalAmount()), 10));
+					posPrinter.endLine();
+
+					posPrinter.beginLine(PosPrinter.SIZE_0);
+					posPrinter.endLine();
+
+					posPrinter.beginLine(PosPrinter.SIZE_0);
 					posPrinter.printText(StringUtils.leftPad("TIP :", 32));
 					if (ticket.getGratuity() != null) {
 						posPrinter.printText(StringUtils.leftPad(Application.formatNumber(ticket.getGratuity().getAmount()), 10));
