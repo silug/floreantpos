@@ -361,7 +361,7 @@ public class TicketView extends JPanel {
 
 			if (Application.getPrinterConfiguration().isPrintKitchenWhenTicketSettled()) {
 				if (ticket.needsKitchenPrint()) {
-					PosPrintService.printToKitcken(ticket);
+					PosPrintService.printToKitchen(ticket);
 				}
 				ticket.clearDeletedItems();
 				saveOrder();
