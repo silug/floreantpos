@@ -343,12 +343,12 @@ public class PosPrintService {
 
 					posPrinter.beginLine(PosPrinter.SIZE_0);
 					posPrinter.printText(StringUtils.leftPad("CREDIT     :", 32));
-					posPrinter.printText(StringUtils.leftPad(Application.formatNumber(ticket.getPaidAmount()), 10));
+					posPrinter.printText(StringUtils.leftPad(Application.formatNumber(ticket.getTenderedAmount()), 10));
 					posPrinter.endLine();
 
 					posPrinter.beginLine(PosPrinter.SIZE_0);
 					posPrinter.printText(StringUtils.leftPad("CHANGE     :", 32));
-					posPrinter.printText(StringUtils.leftPad(Application.formatNumber(ticket.getPaidAmount() - ticket.getTotalAmount()), 10));
+					posPrinter.printText(StringUtils.leftPad(Application.formatNumber(ticket.getTenderedAmount() - ticket.getDueAmountBeforePaid()), 10));
 					posPrinter.endLine();
 
 					posPrinter.beginLine(PosPrinter.SIZE_0);
