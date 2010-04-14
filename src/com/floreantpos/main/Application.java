@@ -290,7 +290,8 @@ public class Application {
 	}
 
 	public static String getTitle() {
-		return "Floreant POS - Version " + VERSION;
+		return ApplicationConfig.getPreferences().get("TITLE_PREFIX", "")
+		     + ApplicationConfig.getPreferences().get("TITLE", "Floreant POS - Version " + VERSION);
 	}
 
 	public static ImageIcon getApplicationIcon() {
