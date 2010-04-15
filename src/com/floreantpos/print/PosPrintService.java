@@ -333,36 +333,41 @@ public class PosPrintService {
 					posPrinter.printText(StringUtils.leftPad(Application.formatNumber(ticket.getTotalAmount()), 10));
 					posPrinter.endLine();
 
-//					posPrinter.beginLine(PosPrinter.SIZE_0);
-//					posPrinter.endLine();
-//
-//					posPrinter.beginLine(PosPrinter.SIZE_0);
-//					posPrinter.printText(StringUtils.leftPad("PAYMENT METHOD :", 32));
-//					posPrinter.printText(StringUtils.leftPad(ticket.getTransactionType(), 10));
-//					posPrinter.endLine();
-//
-//					posPrinter.beginLine(PosPrinter.SIZE_0);
-//					posPrinter.printText(StringUtils.leftPad("CREDIT     :", 32));
-//					posPrinter.printText(StringUtils.leftPad(Application.formatNumber(ticket.getTenderedAmount()), 10));
-//					posPrinter.endLine();
-//
-//					posPrinter.beginLine(PosPrinter.SIZE_0);
-//					posPrinter.printText(StringUtils.leftPad("CHANGE     :", 32));
-//					posPrinter.printText(StringUtils.leftPad(Application.formatNumber(ticket.getTenderedAmount() - ticket.getDueAmountBeforePaid()), 10));
-//					posPrinter.endLine();
+					if (ticket.getTransactionType() != null) {
+						posPrinter.beginLine(PosPrinter.SIZE_0);
+						posPrinter.endLine();
 
-					posPrinter.beginLine(PosPrinter.SIZE_0);
-					posPrinter.endLine();
+						posPrinter.beginLine(PosPrinter.SIZE_0);
+						posPrinter.printText(StringUtils.leftPad("PAYMENT METHOD :", 32));
+						posPrinter.printText(StringUtils.leftPad(ticket.getTransactionType(), 10));
+						posPrinter.endLine();
 
-					posPrinter.beginLine(PosPrinter.SIZE_0);
-					posPrinter.printText(StringUtils.leftPad("TIP :", 32));
-					if (ticket.getGratuity() != null) {
-						posPrinter.printText(StringUtils.leftPad(Application.formatNumber(ticket.getGratuity().getAmount()), 10));
+//						posPrinter.beginLine(PosPrinter.SIZE_0);
+//						posPrinter.printText(StringUtils.leftPad("CREDIT     :", 32));
+//						posPrinter.printText(StringUtils.leftPad(Application.formatNumber(ticket.getTenderedAmount()), 10));
+//						posPrinter.endLine();
+//
+//						posPrinter.beginLine(PosPrinter.SIZE_0);
+//						posPrinter.printText(StringUtils.leftPad("CHANGE     :", 32));
+//						posPrinter.printText(StringUtils.leftPad(Application.formatNumber(ticket.getTenderedAmount() - ticket.getDueAmountBeforePaid()), 10));
+//						posPrinter.endLine();
 					}
-					posPrinter.endLine();
+
 					posPrinter.beginLine(PosPrinter.SIZE_0);
-					posPrinter.printText(StringUtils.leftPad("TOTAL :", 32));
 					posPrinter.endLine();
+
+					if (ticket.getGratuity() != null) {
+						posPrinter.beginLine(PosPrinter.SIZE_0);
+						posPrinter.printText(StringUtils.leftPad("TIP :", 32));
+						posPrinter.printText(StringUtils.leftPad(Application.formatNumber(ticket.getGratuity().getAmount()), 10));
+						posPrinter.endLine();
+						posPrinter.beginLine(PosPrinter.SIZE_0);
+						posPrinter.printText(StringUtils.leftPad("TOTAL :", 32));
+						if (ticket.getGratuity().getAmount() > 0) {
+							posPrinter.printText(StringUtils.leftPad(Application.formatNumber(ticket.getTotalAmount() + ticket.getGratuity().getAmount()), 10));
+						}
+						posPrinter.endLine();
+					}
 
 					printCentered(posPrinter, "THANK YOU!!");
 					printCentered(posPrinter, "PLEASE COME AGAIN!!!");
